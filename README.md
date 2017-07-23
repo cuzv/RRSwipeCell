@@ -1,0 +1,2 @@
+# RRSwipeCell
+Swipeable UICollectionViewCell
