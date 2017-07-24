@@ -12,7 +12,6 @@
 		466062A21F24744400AA2673 /* RRSwipeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062A01F24744400AA2673 /* RRSwipeCollectionViewCell.m */; };
 		466062AB1F2474B700AA2673 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062AA1F2474B700AA2673 /* main.m */; };
 		466062AE1F2474B700AA2673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062AD1F2474B700AA2673 /* AppDelegate.m */; };
-		466062B41F2474B700AA2673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466062B21F2474B700AA2673 /* Main.storyboard */; };
 		466062B61F2474B700AA2673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466062B51F2474B700AA2673 /* Assets.xcassets */; };
 		466062B91F2474B700AA2673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466062B71F2474B700AA2673 /* LaunchScreen.storyboard */; };
 		466062C01F24769600AA2673 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062BF1F24769600AA2673 /* CollectionViewController.m */; };
@@ -25,7 +24,33 @@
 		466062D51F24EA0500AA2673 /* RRSwipeActionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 466062CB1F2491DE00AA2673 /* RRSwipeActionsView.h */; };
 		466062D61F24EA0500AA2673 /* RRSwipeActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062CC1F2491DE00AA2673 /* RRSwipeActionsView.m */; };
 		466062DA1F25072200AA2673 /* UICollectionView+RRSwipeCell_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 466062D91F25072200AA2673 /* UICollectionView+RRSwipeCell_Internal.h */; };
+		4696A7CD1F25D33400824DDF /* RRSwipeCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466062941F24742D00AA2673 /* RRSwipeCell.framework */; };
+		4696A7CE1F25D33400824DDF /* RRSwipeCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 466062941F24742D00AA2673 /* RRSwipeCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4696A7CF1F25D33400824DDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4660628B1F24742D00AA2673 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 466062931F24742D00AA2673;
+			remoteInfo = RRSwipeCell;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4696A7D11F25D33400824DDF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4696A7CE1F25D33400824DDF /* RRSwipeCell.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		466062941F24742D00AA2673 /* RRSwipeCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RRSwipeCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,7 +62,6 @@
 		466062AA1F2474B700AA2673 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		466062AC1F2474B700AA2673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		466062AD1F2474B700AA2673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		466062B31F2474B700AA2673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		466062B51F2474B700AA2673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		466062B81F2474B700AA2673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		466062BA1F2474B700AA2673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4696A7CD1F25D33400824DDF /* RRSwipeCell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +140,6 @@
 			children = (
 				466062AC1F2474B700AA2673 /* AppDelegate.h */,
 				466062AD1F2474B700AA2673 /* AppDelegate.m */,
-				466062B21F2474B700AA2673 /* Main.storyboard */,
 				466062B51F2474B700AA2673 /* Assets.xcassets */,
 				466062B71F2474B700AA2673 /* LaunchScreen.storyboard */,
 				466062BA1F2474B700AA2673 /* Info.plist */,
@@ -181,10 +205,12 @@
 				466062A31F2474B700AA2673 /* Sources */,
 				466062A41F2474B700AA2673 /* Frameworks */,
 				466062A51F2474B700AA2673 /* Resources */,
+				4696A7D11F25D33400824DDF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4696A7D01F25D33400824DDF /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -202,6 +228,7 @@
 				TargetAttributes = {
 					466062931F24742D00AA2673 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = XDN35K5RF2;
 						ProvisioningStyle = Automatic;
 					};
 					466062A61F2474B700AA2673 = {
@@ -244,7 +271,6 @@
 			files = (
 				466062B91F2474B700AA2673 /* LaunchScreen.storyboard in Resources */,
 				466062B61F2474B700AA2673 /* Assets.xcassets in Resources */,
-				466062B41F2474B700AA2673 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,15 +301,15 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		466062B21F2474B700AA2673 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				466062B31F2474B700AA2673 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		4696A7D01F25D33400824DDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 466062931F24742D00AA2673 /* RRSwipeCell */;
+			targetProxy = 4696A7CF1F25D33400824DDF /* PBXContainerItemProxy */;
 		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
 		466062B71F2474B700AA2673 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -398,6 +424,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = XDN35K5RF2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -416,6 +443,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = XDN35K5RF2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

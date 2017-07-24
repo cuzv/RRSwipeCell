@@ -8,3 +8,7 @@
 # RRSwipeCell
 
 Swipeable UICollectionViewCell
+
+
+
+<p align="left"><img src="./Preview/1.gif" width=240px"></p>

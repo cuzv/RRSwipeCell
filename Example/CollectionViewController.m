@@ -24,6 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"RRSwipeCell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -101,7 +102,6 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"mark");
         [weak_self.collectionView rr_hideSwipeActions];
     }];
-    
     if (indexPath.item % 2) {
         return @[remove, mark];
     }
