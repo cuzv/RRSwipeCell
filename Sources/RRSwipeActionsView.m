@@ -10,9 +10,9 @@
 #import "RRSwipeAction.h"
 
 @interface RRSwipeActionsView ()
+
 @property (nonatomic, assign) CGSize maxSize;
 @property (nonatomic, strong) NSArray<RRSwipeAction *> *actions;
-@property (nonatomic, weak) UICollectionView *collectionView;
 
 @end
 
@@ -20,7 +20,6 @@
 
 - (instancetype)initWithMaxSize:(CGSize)size
                         actions:(NSArray<RRSwipeAction *> *)actions
-                 collectionView:(UICollectionView *)collectionView
 {
     self = [super init];
     if (!self) {
@@ -28,7 +27,6 @@
     }
     _maxSize = size;
     _actions = actions;
-    _collectionView = collectionView;
     self.frame = CGRectMake(0, 0, size.width, size.height);
     [self commitInit];
     return self;
@@ -55,7 +53,7 @@
 }
 
 - (void)_rr_handleClickAction:(UIButton *)sender {
-    self.actions[sender.tag].handler(self.collectionView);
+    self.actions[sender.tag].handler();
 }
 
 @end

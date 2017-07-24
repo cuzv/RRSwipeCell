@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J6m-z9-dHW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OmD-NA-Etb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
-        <scene sceneID="5cF-qi-NoG">
+        <!--RRSwipeCell-->
+        <scene sceneID="LsY-RH-Rch">
             <objects>
-                <collectionViewController id="J6m-z9-dHW" customClass="CollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IqY-7H-PGx">
+                <collectionViewController id="HrV-en-2mD" customClass="CollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qJf-0f-spZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JEL-4y-stt">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rdg-Md-0xA">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -25,14 +25,33 @@
                         </collectionViewFlowLayout>
                         <cells/>
                         <connections>
-                            <outlet property="dataSource" destination="J6m-z9-dHW" id="pdj-Lv-c4M"/>
-                            <outlet property="delegate" destination="J6m-z9-dHW" id="06n-jE-kqt"/>
+                            <outlet property="dataSource" destination="HrV-en-2mD" id="d9E-qb-a3l"/>
+                            <outlet property="delegate" destination="HrV-en-2mD" id="0Ez-E5-OV4"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="RRSwipeCell" id="4gd-gv-NHy"/>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-zo-yxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oHK-ns-R81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="815"/>
+            <point key="canvasLocation" x="951" y="808"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="J5H-tu-YZh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OmD-NA-Etb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QLp-Zl-gyE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HrV-en-2mD" kind="relationship" relationship="rootViewController" id="dZy-SI-bjS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1f-vq-qUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="101.59999999999999" y="814.54272863568224"/>
         </scene>
     </scenes>
 </document>

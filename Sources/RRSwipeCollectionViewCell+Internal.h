@@ -9,6 +9,6 @@
 @class RRSwipeCollectionViewCell;
 @interface RRSwipeCollectionViewCell ()
 
-- (void)_rr_hideSwipeActions;
+- (void)_rr_hideSwipeActionsAnimated:(BOOL)animated;
 
 @end

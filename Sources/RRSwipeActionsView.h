@@ -12,8 +12,7 @@
 @interface RRSwipeActionsView : UIView
 
 - (instancetype)initWithMaxSize:(CGSize)size
-                        actions:(NSArray<RRSwipeAction *> *)actions
-                 collectionView:(UICollectionView *)collectionView;
+                        actions:(NSArray<RRSwipeAction *> *)actions;
 @property (nonatomic, assign) CGFloat actionsWidth;
 
 @end

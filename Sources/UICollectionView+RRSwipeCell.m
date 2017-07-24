@@ -24,9 +24,7 @@
 - (void)rr_hideSwipeActions {
     for (__kindof UICollectionViewCell *cell in self.visibleCells) {
         if ([cell isKindOfClass:RRSwipeCollectionViewCell.class]) {
-            [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                [((RRSwipeCollectionViewCell *)cell) _rr_hideSwipeActions];
-            } completion:nil];
+            [((RRSwipeCollectionViewCell *)cell) _rr_hideSwipeActionsAnimated:YES];
         }
     }
 }

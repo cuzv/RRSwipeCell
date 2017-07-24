@@ -13,7 +13,7 @@
 - (instancetype)initWithTitle:(NSString *)title
                    titleColor:(UIColor *)titleColor
               backgroundColor:(UIColor *)backgroundColor
-                      handler:(void(^)(UICollectionView *collectionView))handler
+                      handler:(void(^)())handler
 {
     self = [super init];
     if (!self) {

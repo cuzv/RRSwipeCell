@@ -15,6 +15,10 @@
 
 @implementation CollectionViewCell
 
+- (void)dealloc {
+    NSLog(@"~~~~~~~~~~~%s~~~~~~~~~~~", __FUNCTION__);
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (!self) {

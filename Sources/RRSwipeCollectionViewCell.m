@@ -62,13 +62,12 @@
     [self _rr_reset];
 }
 
-
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     if (!self.superview) {
         return NO;
     }
+
     CGPoint newPoint = [self convertPoint:point toView:self.superview];
-    
     if (!UIAccessibilityIsVoiceOverRunning()) {
         for (RRSwipeCollectionViewCell *cell in self.rr_collectionView.rr_swipeCells) {
             if (cell.rr_editing && !CGRectContainsPoint(cell.frame, newPoint)) {
@@ -106,11 +105,7 @@
 }
 
 - (void)_rr_handleTap:(UITapGestureRecognizer *)sender {
-    [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        [self _rr_hideSwipeActions];
-    } completion:^(BOOL finished) {
-        self.rr_editing = NO;
-    }];
+    [self _rr_hideSwipeActionsAnimated:YES];
 }
 
 - (void)_rr_handlePan:(UIPanGestureRecognizer *)sender {
@@ -140,7 +135,10 @@
                 return;
             }
             NSArray<RRSwipeAction *> *actions = [self.rr_collectionView.rr_swipeActionDelegate rr_collectionView:self.rr_collectionView swipeActionsForRowAtIndexPath:indexPath];
-            RRSwipeActionsView *actionsView = [[RRSwipeActionsView alloc] initWithMaxSize:self.bounds.size actions:actions collectionView:self.rr_collectionView];
+            if (!actions || !actions.count) {
+                return;
+            }
+            RRSwipeActionsView *actionsView = [[RRSwipeActionsView alloc] initWithMaxSize:self.bounds.size actions:actions];
             [self addSubview:actionsView];
             [self sendSubviewToBack:actionsView];
             [self.rr_swipeActionsView removeFromSuperview];
@@ -149,6 +147,9 @@
             self.rr_editing = YES;
         } break;
         case UIGestureRecognizerStateChanged: {
+            if (!self.rr_editing) {
+                return;
+            }
             CGRect frame = self.contentView.frame;
             frame.origin.x = contentViewMove;
             self.contentView.frame = frame;
@@ -172,20 +173,23 @@
 
 - (void)_rr_handleCollectionPan:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        [self _rr_hideSwipeActions];
+        [self _rr_hideSwipeActionsAnimated:NO];
     }
 }
 
-- (void)_rr_hideSwipeActions {
+- (void)_rr_hideSwipeActionsAnimated:(BOOL)animated {
     CGRect frame = self.contentView.frame;
     frame.origin.x = 0;
-    self.contentView.frame = frame;
-    self.backgroundView.frame = frame;
-    self.rr_editing = NO;
+    [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.contentView.frame = frame;
+        self.backgroundView.frame = frame;
+    } completion:^(BOOL finished) {
+        self.rr_editing = NO;
+    }];
 }
 
 - (void)_rr_reset {
-    [self _rr_hideSwipeActions];
+    [self _rr_hideSwipeActionsAnimated:NO];
     [self.rr_swipeActionsView removeFromSuperview];
     self.rr_swipeActionsView = nil;
 }

@@ -11,12 +11,16 @@
 @import RRSwipeCell;
 
 @interface CollectionViewController () <RRSwipeActionDelegate>
-
+@property (nonatomic, strong) NSMutableArray *data;
 @end
 
 @implementation CollectionViewController
 
 static NSString * const reuseIdentifier = @"Cell";
+
+- (void)dealloc {
+    NSLog(@"~~~~~~~~~~~%s~~~~~~~~~~~", __FUNCTION__);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +35,9 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.alwaysBounceVertical = YES;
     
     // Do any additional setup after loading the view.
+ 
+    NSString *str = @"The team continues buckling down on its Super Glue Gun project. Felix brings together a custom-designed motor control circuit that will be used for extruding the glue. Meanwhile, Ben cuts up the perfb...";
+    _data = [@[str, str, str, str, str, str, str, str, str] mutableCopy];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -39,14 +46,13 @@ static NSString * const reuseIdentifier = @"Cell";
     return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return self.data.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.textLael.text = [NSString stringWithFormat:@"%@: The team continues buckling down on its Super Glue Gun project. Felix brings together a custom-designed motor control circuit that will be used for extruding the glue. Meanwhile, Ben cuts up the perfb...", @(indexPath.item)];
+    cell.textLael.text = [NSString stringWithFormat:@"%@: %@", @(indexPath.item), self.data[indexPath.item]];
     return cell;
 }
 
@@ -70,12 +76,30 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - RRSwipeActionDelegate
 
 - (nullable NSArray<RRSwipeAction *> *)rr_collectionView:(UICollectionView *)collectionView swipeActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RRSwipeAction *remove = [[RRSwipeAction alloc] initWithTitle:@"Remove" titleColor:UIColor.whiteColor backgroundColor:UIColor.redColor handler:^(UICollectionView * _Nonnull collectionView) {
+    if (!indexPath.item) {
+        return nil;
+    }
+    __weak typeof(self) weak_self = self;
+    RRSwipeAction *remove = [[RRSwipeAction alloc] initWithTitle:@"Remove" titleColor:UIColor.whiteColor backgroundColor:UIColor.redColor handler:^{
+        __strong typeof(weak_self) strong_self = weak_self;
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Are you sure rmove this?" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *yep = [UIAlertAction actionWithTitle:@"Yep" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"delete: %@-%@",@(indexPath.section), @(indexPath.item));
+            [strong_self.data removeObjectAtIndex:indexPath.item];
+            [strong_self.collectionView performBatchUpdates:^{
+                [strong_self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            } completion:^(BOOL finished) {
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [actionSheet addAction:yep];
+        [actionSheet addAction:cancel];
+        [strong_self presentViewController:actionSheet animated:YES completion:nil];
         NSLog(@"remove");
     }];
-    RRSwipeAction *mark = [[RRSwipeAction alloc] initWithTitle:@"Mark" titleColor:UIColor.whiteColor backgroundColor:UIColor.lightGrayColor handler:^(UICollectionView * _Nonnull collectionView) {
+    RRSwipeAction *mark = [[RRSwipeAction alloc] initWithTitle:@"Mark" titleColor:UIColor.whiteColor backgroundColor:UIColor.lightGrayColor handler:^{
         NSLog(@"mark");
-        [collectionView rr_hideSwipeActions];
+        [weak_self.collectionView rr_hideSwipeActions];
     }];
     
     if (indexPath.item % 2) {
@@ -88,36 +112,8 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"didSelectItemAtIndexPath: %@-%@",@(indexPath.section), @(indexPath.item));
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *)title
                    titleColor:(UIColor *)titleColor
               backgroundColor:(UIColor *)backgroundColor
-                      handler:(void(^)(UICollectionView *collectionView))handler;
+                      handler:(void(^)())handler;
 
 @property (nonatomic, strong, readonly) UIFont *font;
 @property (nonatomic, assign, readonly) CGFloat width;
