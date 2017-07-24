@@ -12,6 +12,7 @@
 @interface UICollectionView (RRSwipeCell)
 
 @property (nonatomic, weak, nullable) id<RRSwipeActionDelegate> rr_swipeActionDelegate;
+@property (nonatomic, assign, readonly) BOOL rr_isActive;
 - (void)rr_hideSwipeActions;
 
 @end

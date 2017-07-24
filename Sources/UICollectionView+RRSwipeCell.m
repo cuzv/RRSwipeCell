@@ -9,27 +9,57 @@
 #import "UICollectionView+RRSwipeCell.h"
 #import <objc/runtime.h>
 #import "RRSwipeCollectionViewCell.h"
-#import "RRSwipeCollectionViewCell+Internal.h"
+#import "RRSwipeActionDelegate.h"
+
+@interface _RRWeakObjectBox : NSObject
+@property (nonatomic, weak) id object;
+@end
+
+@implementation _RRWeakObjectBox
+
+- (instancetype)initWithObject:(id)object {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _object = object;
+    return self;
+}
+
+@end
 
 @implementation UICollectionView (RRSwipeCell)
 
 - (id<RRSwipeActionDelegate>)rr_swipeActionDelegate {
-    return objc_getAssociatedObject(self, _cmd);
+    return ((_RRWeakObjectBox *)objc_getAssociatedObject(self, _cmd)).object;
 }
 
 - (void)setRr_swipeActionDelegate:(id<RRSwipeActionDelegate>)rr_swipeActionDelegate {
-    objc_setAssociatedObject(self, @selector(rr_swipeActionDelegate), rr_swipeActionDelegate, OBJC_ASSOCIATION_ASSIGN);
+    _RRWeakObjectBox *value = [[_RRWeakObjectBox alloc] initWithObject:rr_swipeActionDelegate];
+    objc_setAssociatedObject(self, @selector(rr_swipeActionDelegate), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)rr_hideSwipeActions {
     for (__kindof UICollectionViewCell *cell in self.visibleCells) {
         if ([cell isKindOfClass:RRSwipeCollectionViewCell.class]) {
-            [((RRSwipeCollectionViewCell *)cell) _rr_hideSwipeActionsAnimated:YES];
+            [((RRSwipeCollectionViewCell *)cell) rr_hideSwipeActionsAnimated:YES completion:nil];
         }
     }
 }
 
-- (NSArray<RRSwipeCollectionViewCell *> *)rr_swipeCells {
+- (BOOL)rr_isActive {
+    for (__kindof UICollectionViewCell *cell in self.visibleCells) {
+        if ([cell isKindOfClass:RRSwipeCollectionViewCell.class]) {
+            RRSwipeCollectionViewCell *swipeCell = (RRSwipeCollectionViewCell *)cell;
+            if (swipeCell.rr_isActive) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (NSArray<RRSwipeCollectionViewCell *> *)_rr_swipeCells {
     NSMutableArray *arr = [NSMutableArray new];
     for (__kindof UICollectionViewCell *cell in self.visibleCells) {
         if ([cell isKindOfClass:RRSwipeCollectionViewCell.class]) {

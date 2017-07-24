@@ -8,5 +8,5 @@
 
 @class RRSwipeCollectionViewCell;
 @interface UICollectionView (RRSwipeCell_Internal)
-@property (nonatomic, strong, readonly, nullable) NSArray<__kindof RRSwipeCollectionViewCell *> *rr_swipeCells;
+@property (nonatomic, strong, readonly, nullable) NSArray<__kindof RRSwipeCollectionViewCell *> *_rr_swipeCells;
 @end

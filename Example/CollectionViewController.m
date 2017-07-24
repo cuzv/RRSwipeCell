@@ -37,7 +37,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Do any additional setup after loading the view.
  
     NSString *str = @"The team continues buckling down on its Super Glue Gun project. Felix brings together a custom-designed motor control circuit that will be used for extruding the glue. Meanwhile, Ben cuts up the perfb...";
-    _data = [@[str, str, str, str, str, str, str, str, str] mutableCopy];
+    _data = [@[str, str, str, str, str, str, str, str, str, str, str, str, str] mutableCopy];
 }
 
 #pragma mark <UICollectionViewDataSource>

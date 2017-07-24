@@ -17,7 +17,6 @@
 		466062B91F2474B700AA2673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466062B71F2474B700AA2673 /* LaunchScreen.storyboard */; };
 		466062C01F24769600AA2673 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062BF1F24769600AA2673 /* CollectionViewController.m */; };
 		466062C31F2476D100AA2673 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062C21F2476D100AA2673 /* CollectionViewCell.m */; };
-		466062CF1F24E9E200AA2673 /* RRSwipeCollectionViewCell+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 466062CE1F24944E00AA2673 /* RRSwipeCollectionViewCell+Internal.h */; };
 		466062D01F24E9E800AA2673 /* RRSwipeAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 466062C41F2487FC00AA2673 /* RRSwipeAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		466062D11F24E9EF00AA2673 /* RRSwipeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 466062C51F2487FC00AA2673 /* RRSwipeAction.m */; };
 		466062D21F24E9F900AA2673 /* RRSwipeActionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 466062C71F248A4F00AA2673 /* RRSwipeActionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,7 +52,6 @@
 		466062C91F248B0900AA2673 /* UICollectionView+RRSwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+RRSwipeCell.m"; sourceTree = "<group>"; };
 		466062CB1F2491DE00AA2673 /* RRSwipeActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSwipeActionsView.h; sourceTree = "<group>"; };
 		466062CC1F2491DE00AA2673 /* RRSwipeActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSwipeActionsView.m; sourceTree = "<group>"; };
-		466062CE1F24944E00AA2673 /* RRSwipeCollectionViewCell+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RRSwipeCollectionViewCell+Internal.h"; sourceTree = "<group>"; };
 		466062D91F25072200AA2673 /* UICollectionView+RRSwipeCell_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+RRSwipeCell_Internal.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +97,6 @@
 				466062971F24742D00AA2673 /* RRSwipeCell.h */,
 				466062981F24742D00AA2673 /* Info.plist */,
 				4660629F1F24744400AA2673 /* RRSwipeCollectionViewCell.h */,
-				466062CE1F24944E00AA2673 /* RRSwipeCollectionViewCell+Internal.h */,
 				466062A01F24744400AA2673 /* RRSwipeCollectionViewCell.m */,
 				466062C41F2487FC00AA2673 /* RRSwipeAction.h */,
 				466062C51F2487FC00AA2673 /* RRSwipeAction.m */,
@@ -146,13 +143,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				466062A11F24744400AA2673 /* RRSwipeCollectionViewCell.h in Headers */,
-				466062CF1F24E9E200AA2673 /* RRSwipeCollectionViewCell+Internal.h in Headers */,
-				466062D31F24E9FC00AA2673 /* UICollectionView+RRSwipeCell.h in Headers */,
 				466062D01F24E9E800AA2673 /* RRSwipeAction.h in Headers */,
 				466062D21F24E9F900AA2673 /* RRSwipeActionDelegate.h in Headers */,
-				466062DA1F25072200AA2673 /* UICollectionView+RRSwipeCell_Internal.h in Headers */,
+				466062A11F24744400AA2673 /* RRSwipeCollectionViewCell.h in Headers */,
+				466062D31F24E9FC00AA2673 /* UICollectionView+RRSwipeCell.h in Headers */,
 				466062991F24742D00AA2673 /* RRSwipeCell.h in Headers */,
+				466062DA1F25072200AA2673 /* UICollectionView+RRSwipeCell_Internal.h in Headers */,
 				466062D51F24EA0500AA2673 /* RRSwipeActionsView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

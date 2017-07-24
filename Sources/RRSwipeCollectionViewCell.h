@@ -10,4 +10,7 @@
 
 @interface RRSwipeCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, assign, readonly) BOOL rr_isActive;
+- (void)rr_hideSwipeActionsAnimated:(BOOL)animated completion:(void (^__nullable)())completion;
+
 @end

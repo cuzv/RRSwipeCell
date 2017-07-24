@@ -16,7 +16,8 @@ FOUNDATION_EXPORT const unsigned char RRSwipeCellVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RRSwipeCell/PublicHeader.h>
 
-#import <RRSwipeCell/RRSwipeCollectionViewCell.h>
-#import <RRSwipeCell/RRSwipeActionDelegate.h>
-#import <RRSwipeCell/UICollectionView+RRSwipeCell.h>
 #import <RRSwipeCell/RRSwipeAction.h>
+#import <RRSwipeCell/RRSwipeActionDelegate.h>
+#import <RRSwipeCell/RRSwipeCollectionViewCell.h>
+#import <RRSwipeCell/UICollectionView+RRSwipeCell.h>
+

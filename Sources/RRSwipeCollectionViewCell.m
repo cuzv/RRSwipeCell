@@ -7,7 +7,6 @@
 //
 
 #import "RRSwipeCollectionViewCell.h"
-#import "RRSwipeCollectionViewCell+Internal.h"
 #import "RRSwipeActionDelegate.h"
 #import "RRSwipeActionsView.h"
 #import "UICollectionView+RRSwipeCell.h"
@@ -18,7 +17,7 @@
 @property (nonatomic, strong) UITapGestureRecognizer *rr_tapGestureRecognizer;
 @property (nonatomic, weak) UICollectionView *rr_collectionView;
 @property (nonatomic, weak) RRSwipeActionsView *rr_swipeActionsView;
-@property (nonatomic, assign) BOOL rr_editing;
+@property (nonatomic, assign, readwrite) BOOL rr_isActive;
 @end
 
 @implementation RRSwipeCollectionViewCell
@@ -69,8 +68,8 @@
 
     CGPoint newPoint = [self convertPoint:point toView:self.superview];
     if (!UIAccessibilityIsVoiceOverRunning()) {
-        for (RRSwipeCollectionViewCell *cell in self.rr_collectionView.rr_swipeCells) {
-            if (cell.rr_editing && !CGRectContainsPoint(cell.frame, newPoint)) {
+        for (RRSwipeCollectionViewCell *cell in self.rr_collectionView._rr_swipeCells) {
+            if (cell.rr_isActive && !CGRectContainsPoint(cell.frame, newPoint)) {
                 [self.rr_collectionView rr_hideSwipeActions];
                 return NO;
             }
@@ -144,10 +143,10 @@
             [self.rr_swipeActionsView removeFromSuperview];
             self.rr_swipeActionsView = nil;
             self.rr_swipeActionsView = actionsView;
-            self.rr_editing = YES;
+            self.rr_isActive = YES;
         } break;
         case UIGestureRecognizerStateChanged: {
-            if (!self.rr_editing) {
+            if (!self.rr_isActive) {
                 return;
             }
             CGRect frame = self.contentView.frame;
@@ -164,7 +163,7 @@
                 self.contentView.frame = frame;
                 self.backgroundView.frame = frame;
             } completion:^(BOOL finished) {
-                self.rr_editing = x != 0;
+                self.rr_isActive = x != 0;
             }];
         } break;
         default: break;
@@ -178,20 +177,27 @@
 }
 
 - (void)_rr_hideSwipeActionsAnimated:(BOOL)animated {
-    CGRect frame = self.contentView.frame;
-    frame.origin.x = 0;
-    [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.contentView.frame = frame;
-        self.backgroundView.frame = frame;
-    } completion:^(BOOL finished) {
-        self.rr_editing = NO;
-    }];
+    [self rr_hideSwipeActionsAnimated:YES completion:nil];
 }
 
 - (void)_rr_reset {
     [self _rr_hideSwipeActionsAnimated:NO];
     [self.rr_swipeActionsView removeFromSuperview];
     self.rr_swipeActionsView = nil;
+}
+
+- (void)rr_hideSwipeActionsAnimated:(BOOL)animated completion:(void (^__nullable)())completion {
+    CGRect frame = self.contentView.frame;
+    frame.origin.x = 0;
+    [UIView animateWithDuration:animated ? 0.25f : 0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.contentView.frame = frame;
+        self.backgroundView.frame = frame;
+    } completion:^(BOOL finished) {
+        self.rr_isActive = NO;
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -201,8 +207,8 @@
         if (UIAccessibilityIsVoiceOverRunning()) {
             [self.rr_collectionView rr_hideSwipeActions];
         }
-        for (RRSwipeCollectionViewCell *cell in self.rr_collectionView.rr_swipeCells) {
-            if (cell.rr_editing) {
+        for (RRSwipeCollectionViewCell *cell in self.rr_collectionView._rr_swipeCells) {
+            if (cell.rr_isActive) {
                 return YES;
             }
         }
