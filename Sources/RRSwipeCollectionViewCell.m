@@ -18,6 +18,7 @@
 @property (nonatomic, weak) UICollectionView *rr_collectionView;
 @property (nonatomic, weak) RRSwipeActionsView *rr_swipeActionsView;
 @property (nonatomic, assign, readwrite) BOOL rr_isActive;
+@property (nonatomic, assign) BOOL rr_didAppear;
 @end
 
 @implementation RRSwipeCollectionViewCell
@@ -108,6 +109,13 @@
 }
 
 - (void)_rr_handlePan:(UIPanGestureRecognizer *)sender {
+    // 如果一开始处于打开状态
+    // 还原并且不响应事件
+    if (self.rr_didAppear) {
+        [self _rr_hideSwipeActionsAnimated:YES];
+        return;
+    }
+    
     CGFloat translationX = [sender translationInView:self].x;
     translationX = translationX > 15 ? 15 : translationX;
     // 禁止右滑
@@ -155,6 +163,9 @@
             self.backgroundView.frame = frame;
         } break;
         case UIGestureRecognizerStateEnded: {
+            if (!self.rr_isActive) {
+                return;
+            }
             // 如果滑动过半，到位，否则 recover
             CGFloat x = fabs(translationX) * 2 > totalWidth ? -totalWidth : 0;
             [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -164,6 +175,7 @@
                 self.backgroundView.frame = frame;
             } completion:^(BOOL finished) {
                 self.rr_isActive = x != 0;
+                self.rr_didAppear = self.rr_isActive;
             }];
         } break;
         default: break;
@@ -194,6 +206,7 @@
         self.backgroundView.frame = frame;
     } completion:^(BOOL finished) {
         self.rr_isActive = NO;
+        self.rr_didAppear = NO;
         if (completion) {
             completion();
         }

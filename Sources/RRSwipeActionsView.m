@@ -43,7 +43,7 @@
         button.titleLabel.font = action.font;
         button.tag = index;
         button.frame = CGRectMake(lastMinX - action.width, 0, action.width, self.maxSize.height);
-        [button addTarget:self action:@selector(_rr_handleClickAction:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(_rr_handleClickAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         lastMinX = button.frame.origin.x;
         _actionsWidth = self.maxSize.width - lastMinX;
