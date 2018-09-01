@@ -2,8 +2,8 @@
 //  UICollectionView+RRSwipeCell_Internal.h
 //  RRSwipeCell
 //
-//  Created by Roy Shaw on 7/24/17.
-//  Copyright © 2017 RedRain. All rights reserved.
+//  Created by Shaw on 7/24/17.
+//  Copyright © 2017 Shaw. All rights reserved.
 //
 
 @class RRSwipeCollectionViewCell;

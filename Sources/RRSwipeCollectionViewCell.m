@@ -2,8 +2,8 @@
 //  RRSwipeCollectionViewCell.m
 //  RRSwipeCell
 //
-//  Created by Roy Shaw on 7/23/17.
-//  Copyright © 2017 RedRain. All rights reserved.
+//  Created by Shaw on 7/23/17.
+//  Copyright © 2017 Shaw. All rights reserved.
 //
 
 #import "RRSwipeCollectionViewCell.h"
